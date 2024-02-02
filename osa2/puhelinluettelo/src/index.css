@@ -1,0 +1,10 @@
+h2 {
+    color: green;
+    font-style: italic;
+}
+
+.person {
+    color: grey;
+    padding-top: 3px;
+    font-size: 15px;
+}

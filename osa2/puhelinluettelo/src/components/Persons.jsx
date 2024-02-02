@@ -1,10 +1,12 @@
-const Person = ({ name, number }) => {
+import Button from "./Button"
+
+const Person = ({ person, handleRemoval }) => {
     return (
-        <li>{name} {number}</li>
+        <li className="person">{person.name} {person.number} <Button text={"delete"} handleClick={() => handleRemoval(person.name, person.id)} /></li>
     )
 }
 
-const Persons = ({ persons, nameFilter }) => {
+const Persons = ({ persons, nameFilter, handleRemoval }) => {
     return (
         <div>
             <ul>
@@ -13,7 +15,7 @@ const Persons = ({ persons, nameFilter }) => {
                         (person.name.toLowerCase().includes(nameFilter.toLowerCase()))
                     )
                     .map(person => (
-                        <Person key={person.name} name={person.name} number={person.number} />)
+                        <Person key={person.id} person={person} handleRemoval={handleRemoval} />)
                     )
                 }
             </ul>
