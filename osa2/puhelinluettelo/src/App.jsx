@@ -3,12 +3,16 @@ import personService from './services/persons'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
+import Notification from './components/Notification'
+import ErrorMessage from './components/ErrorMessage'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [nameFilter, setNameFilter] = useState('')
+  const [notification, setNotification] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -32,6 +36,11 @@ const App = () => {
         setPersons(persons.concat(returnedPerson))
         setNewName('')
         setNewNumber('')
+
+        setNotification(`Added ${returnedPerson.name}`)
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000)
       })
   }
 
@@ -42,6 +51,19 @@ const App = () => {
       .remove(id)
       .then(returnedPerson => {
         setPersons(persons.filter(person => person.id !== id))
+
+        setNotification(`Removed ${returnedPerson.name}`)
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000)
+      })
+      .catch(error => {
+        setPersons(persons.filter(person => person.id !== id))
+
+        setErrorMessage(`Information of ${name} has already been removed from server`)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
       })
   }
 
@@ -56,6 +78,11 @@ const App = () => {
         setPersons(persons.map(p => p.name !== newName ? p : returnedPerson))
         setNewName('')
         setNewNumber('')
+
+        setNotification(`Updated the number of ${returnedPerson.name} to ${returnedPerson.number}`)
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000)
       })
   }
 
@@ -87,6 +114,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={notification} />
+      <ErrorMessage message={errorMessage} />
       <Filter filter={nameFilter} handleChange={handleNameFilterChange} />
       <h3>Add a new</h3>
       <PersonForm addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
