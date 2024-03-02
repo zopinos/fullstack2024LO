@@ -52,7 +52,7 @@ const App = () => {
       .then(returnedPerson => {
         setPersons(persons.filter(person => person.id !== id))
 
-        setNotification(`Removed ${returnedPerson.name}`)
+        setNotification(`Removed ${name}`)
         setTimeout(() => {
           setNotification(null)
         }, 5000)
