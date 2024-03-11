@@ -42,6 +42,14 @@ const App = () => {
           setNotification(null)
         }, 5000)
       })
+      .catch(error => {
+        console.log(error.response.data)
+
+        setErrorMessage(`${error.response.data.error}`)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
+      })
   }
 
   const removePerson = (name, id) => {
@@ -82,6 +90,14 @@ const App = () => {
         setNotification(`Updated the number of ${returnedPerson.name} to ${returnedPerson.number}`)
         setTimeout(() => {
           setNotification(null)
+        }, 5000)
+      })
+      .catch(error => {
+        console.log(error.response.data)
+
+        setErrorMessage(`${error.response.data.error}`)
+        setTimeout(() => {
+          setErrorMessage(null)
         }, 5000)
       })
   }
