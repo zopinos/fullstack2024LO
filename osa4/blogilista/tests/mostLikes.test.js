@@ -109,7 +109,7 @@ describe('most likes', () => {
     ]
 
     test('of empty list is empty object', () => {
-        assert.deepEqual(listHelper.mostLikes([]), {})
+        assert.deepStrictEqual(listHelper.mostLikes([]), {})
     })
 
     test('when list has only one blog equals the author of that', () => {
@@ -117,7 +117,7 @@ describe('most likes', () => {
 
         const reference = { author: "Edsger W. Dijkstra", likes: 5 }
 
-        assert.deepEqual(result, reference)
+        assert.deepStrictEqual(result, reference)
     })
 
     test('of a bigger list is found right', () => {
@@ -125,7 +125,7 @@ describe('most likes', () => {
 
         const reference = { author: "Edsger W. Dijkstra", likes: 17 }
 
-        assert.deepEqual(result, reference)
+        assert.deepStrictEqual(result, reference)
     })
 
     test('when multiple liked authors are present, both are fine to be returned', () => {

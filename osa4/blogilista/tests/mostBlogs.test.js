@@ -66,7 +66,7 @@ describe('most blogs', () => {
     ]
 
     test('of empty list is empty object', () => {
-        assert.deepEqual(listHelper.mostBlogs([]), {})
+        assert.deepStrictEqual(listHelper.mostBlogs([]), {})
     })
 
     test('when list has only one blog equals the author of that', () => {
@@ -74,7 +74,7 @@ describe('most blogs', () => {
 
         const reference = { author: "Edsger W. Dijkstra", blogs: 1 }
 
-        assert.deepEqual(result, reference)
+        assert.deepStrictEqual(result, reference)
     })
 
     test('of a bigger list is found right', () => {
@@ -82,6 +82,6 @@ describe('most blogs', () => {
 
         const reference = { author: "Robert C. Martin", blogs: 3 }
 
-        assert.deepEqual(result, reference)
+        assert.deepStrictEqual(result, reference)
     })
 })

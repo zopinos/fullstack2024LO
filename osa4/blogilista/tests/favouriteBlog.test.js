@@ -125,7 +125,7 @@ describe('favourite blog', () => {
     ]
 
     test('of empty list is empty object', () => {
-        assert.deepEqual(listHelper.favouriteBlog([]), {})
+        assert.deepStrictEqual(listHelper.favouriteBlog([]), {})
     })
 
     test('when list has only one blog equals the only blog', () => {
@@ -140,7 +140,7 @@ describe('favourite blog', () => {
             __v: 0
         }
 
-        assert.deepEqual(result, reference)
+        assert.deepStrictEqual(result, reference)
     })
 
     test('of a bigger list is found right', () => {
@@ -155,7 +155,7 @@ describe('favourite blog', () => {
             __v: 0
         }
 
-        assert.deepEqual(result, reference)
+        assert.deepStrictEqual(result, reference)
     })
 
     test('when multiple favourite blogs are present, both are fine to be returned', () => {
